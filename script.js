@@ -8,7 +8,7 @@ const todaysTasks = document.getElementById('todays-tasks');
 const tomorrowsTasks = document.getElementById('tomorrows-tasks');
 const date = new Date();
 document.addEventListener('DOMContentLoaded', loadTasks);
-
+//for test commit
 newTask.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent the page from refreshing
     addTask();
