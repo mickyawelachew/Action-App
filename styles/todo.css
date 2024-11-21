@@ -80,10 +80,12 @@
     appearance: none; 
     -webkit-appearance: none; 
     display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: 5px;
     margin-right: 0px;
-    width: 15px; 
-    height: 15px;
+    width: 18px; 
+    height: 18px;
     border: 2px solid #eb0505; 
     border-radius: 50%; 
     background-color: rgb(219, 80, 80); 
@@ -94,6 +96,9 @@
 
 .task-remove-button:checked:hover {
     background-color: #5c0303;
+    width: 22px;
+    height: 22px;
+    font-size: 17px;
 }
 
 .task-remove-button:checked {
@@ -103,13 +108,13 @@
 }
 
 .task-remove-button:checked::after {
-    content: "X";
+    content: "\01F5D1";
     color: white;
-    font-size: 8px;
+    font-size: 15px;
     font-weight: bold;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 48%;
+    left: 54%;
     transform: translate(-50%, -50%);
 }
 
