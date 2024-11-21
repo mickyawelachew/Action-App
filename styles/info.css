@@ -1,0 +1,108 @@
+.info-container {
+    width: 650px;
+    min-width: 500px;
+    height: fit-content;
+    padding: 20px;
+}
+
+.calendar, .new-task, .networking, .points, .booking {
+    background: linear-gradient(135deg, #fffaeb, #fdf9eb);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.calendar {
+    flex: 1;
+    height: 500px;
+}
+
+.new-task {
+    flex: 1;
+    height: 200px;
+}
+
+.new-task-input {
+    background-color: white;
+    border-radius: 10px;
+    height: 35px;
+    border-width: 0px;
+    padding-left: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#new-task-form {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    grid-template-columns: 75fr 25fr;
+    grid-template-rows: 1fr 3fr;
+}
+
+#new-task-header {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+#new-task-name {
+    width: 100%;
+}
+
+
+#new-task-date {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+}
+
+#new-task-description {
+    font-family: 'Poppins', sans-serif;
+    padding-top: 5px;
+    margin-bottom: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+#new-task-button {
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border-width: 0px;
+    background-color: #e66524;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+}
+
+#new-task-button:hover {
+    width: 105%;
+    height: 105%;
+}
+
+.smaller-info-container {
+    flex: 0.5;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.points-booking {
+    display: flex;
+    flex-direction: column;
+}
+
+.points,
+.booking {
+    height: 50%;
+    flex: 1;
+}

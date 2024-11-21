@@ -1,0 +1,131 @@
+.todo-header, .todo-footer {
+    background-color: #05052a; 
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.todo-container {
+    height: fit-content;
+    width: 400px;
+    min-width: 250px;
+    background-color:#fdfeff;
+}
+
+@media(max-width: 900px){
+    .todo-container {
+        width: 650px;
+    }
+    .todo-body {
+        max-height: 30vh;
+    }
+}
+
+.todo-body {
+    height: 80vh;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 45px;
+}
+
+.task-button {
+    appearance: none; 
+    -webkit-appearance: none; 
+    display: flex;
+    margin-right: 10px;
+    width: 24px; 
+    height: 24px;
+    border: 2px solid #4CAF50; 
+    border-radius: 50%; 
+    background-color: white; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block; 
+    position: relative;
+}
+
+.task-button:hover {
+    background-color: #e8f5e9; 
+    border-color: #388E3C; 
+}
+
+.task-button:checked {
+    background-color: #4CAF50;
+    border-color: #388E3C;
+    position: relative;
+}
+
+.task-button:checked::after {
+    content: '\2713'; 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.task-remove-button {
+    appearance: none; 
+    -webkit-appearance: none; 
+    display: flex;
+    margin-left: 5px;
+    margin-right: 0px;
+    width: 15px; 
+    height: 15px;
+    border: 2px solid #eb0505; 
+    border-radius: 50%; 
+    background-color: rgb(219, 80, 80); 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.task-remove-button:checked:hover {
+    background-color: #5c0303;
+}
+
+.task-remove-button:checked {
+    background-color: rgb(219, 80, 80);
+    border-color: #eb0505;
+    position: relative;
+}
+
+.task-remove-button:checked::after {
+    content: "X";
+    color: white;
+    font-size: 8px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.task-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 28px;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#todays-tasks-header {
+    margin-top: 0px;
+}
