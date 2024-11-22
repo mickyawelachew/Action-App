@@ -47,7 +47,7 @@ function addTask() {
                     ${taskDate}
                 </div>
             </div>
-            <input type="checkbox" class="task-remove-button" checked="true" id="task-remove-button-${taskNumber}">
+            <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${taskNumber}">
         </div>
     `;
     console.log(taskDate);
@@ -109,7 +109,7 @@ function loadTasks() {
                         ${task.date}
                     </div>
                 </div>
-                <input type="checkbox" class="task-remove-button" id="task-remove-button-${index}" checked="true" style="display: ${task.display};">
+                <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${index}">
             </div>
         `;
         if(task.date === `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`){
@@ -122,10 +122,11 @@ function loadTasks() {
 
 
 todoBody.addEventListener('click', function (event) {
-    if (event.target.classList.contains('task-button')) {
+    if (event.target.closest('.task-button')) {
         completeTask(event);
     }
-    if (event.target.classList.contains('task-remove-button')) {
+    if (event.target.closest('.task-remove-button')) {
+        event.preventDefault();
         removeTask(event);
     }
 });
