@@ -15,6 +15,8 @@ const date = new Date();
 let isTodoFullscreen = false;
 todoFullscreenButton.onclick = todoFullscreen;
 
+let taskDates = [];
+
 document.addEventListener('DOMContentLoaded', loadTasks);
 
 newTask.addEventListener('submit', function (event) {
@@ -28,6 +30,8 @@ function addTask() {
     const todoBody = document.getElementById('todo-body');
     const taskName = taskNameInput.value.trim();
     const taskDate = newTaskDate.value.trim();
+
+    taskDates.push(newTaskDate.value);
 
     if (!taskName || !taskDate) {
         alert("Please fill out both the task name and date.");
@@ -50,7 +54,6 @@ function addTask() {
             <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${taskNumber}">
         </div>
     `;
-    console.log(taskDate);
     if(taskDate === `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`){
         todaysTasks.innerHTML += taskHTML;
     } else {
@@ -59,6 +62,7 @@ function addTask() {
 
     saveTasks();
     sortTasks();
+    renderCalendar(currentDate);
     taskNameInput.value = '';
     newTaskDate.value = '';
 }
@@ -90,12 +94,15 @@ function saveTasks() {
         tasks.push({ name: taskName, date: taskDate, checked: isChecked, display: delButton});
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('taskDates', JSON.stringify(taskDates));
 }
 
 function loadTasks() {
     todaysTasks.innerHTML = '';
     tomorrowsTasks.innerHTML = '';
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    taskDates = JSON.parse(localStorage.getItem('taskDates')) || [];
 
     tasks.forEach((task, index) => {
         const taskHTML = `
@@ -112,7 +119,7 @@ function loadTasks() {
                 <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${index}">
             </div>
         `;
-        if(task.date === `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`){
+        if(task.date <= `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`){
             todaysTasks.innerHTML += taskHTML;
         } else {
             tomorrowsTasks.innerHTML += taskHTML;
@@ -141,8 +148,11 @@ function removeTask(event) {
     if (!event.target.classList.contains('task-remove-button')) return;
     const taskIndex = event.target.getAttribute('id').replace('task-remove-button-', '');
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    taskDates.splice(taskDates.indexOf(tasks[taskIndex].date), 1);
     tasks.splice(taskIndex, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('taskDates', JSON.stringify(taskDates));
+    renderCalendar(currentDate);
     loadTasks();
 }
 
@@ -159,5 +169,6 @@ function todoFullscreen() {
         todoFullscreenIcon.src = "images/fullscreen.svg";
         isTodoFullscreen = false;
     }
-    
 }
+
+loadTasks();

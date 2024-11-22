@@ -1,0 +1,76 @@
+.calendar-container {
+    width: 600px;
+    height: 500px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #05052a;
+    color: #fff;
+    height: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+  
+.calendar-header button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+  
+.weekdays, .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.weekdays div {
+    background: #f0f0f0;
+    padding: 10px 0;
+    font-weight: bold;
+    border-radius: 10px;
+    margin: 5px 3px 0px 3px;
+}
+
+.days {
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    height: 388px;
+}
+
+.day-has-task {
+    background: #e66524;
+    color: #fff;
+}
+  
+
+
+.days div {
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+  
+.days div:hover, .current-day {
+    outline: 2px solid #05052a;
+}
+  
+.days div.inactive {
+    color: #ccc;
+    pointer-events: none;
+}
+  

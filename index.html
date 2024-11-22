@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="styles/general.css">
         <link rel="stylesheet" href="styles/todo.css">
         <link rel="stylesheet" href="styles/info.css">
+        <link rel="stylesheet" href="styles/calendar.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     </head>
     <body>
@@ -30,7 +31,23 @@
             </div>
             <div class="info-container">
                 <div class="calendar">
-                    Calender
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                          <button id="prev">❮</button>
+                          <h2 id="month-year"></h2>
+                          <button id="next">❯</button>
+                        </div>
+                        <div class="weekdays">
+                          <div>Sun</div>
+                          <div>Mon</div>
+                          <div>Tue</div>
+                          <div>Wed</div>
+                          <div>Thu</div>
+                          <div>Fri</div>
+                          <div>Sat</div>
+                        </div>
+                        <div class="days"></div>
+                      </div>
                 </div>
                 <div class="new-task">
                     <p id="new-task-header">Create New Task</p>
@@ -56,6 +73,7 @@
                 </div>
             </div>
         </main>
-        <script src="script.js"></script>
+        <script src="todo.js"></script>
+        <script src="calendar.js"></script>
     </body>
 </html>
