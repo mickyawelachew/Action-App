@@ -1,10 +1,30 @@
-.todo-header, .todo-footer {
+.todo-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #05052a; 
     color: white;
     font-weight: bold;
     text-align: center;
     border-radius: 10px;
     padding: 10px;
+}
+
+#todo-header-text {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#todo-fullscreen-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0, 0);
+    border: none;
+}
+
+#todo-fullscreen-icon {
+    height: 25px;
 }
 
 .todo-container {

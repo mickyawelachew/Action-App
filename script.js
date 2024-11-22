@@ -6,7 +6,15 @@ const taskDoneButton = document.getElementsByClassName('task-button');
 const newTaskDate = document.getElementById('new-task-date');
 const todaysTasks = document.getElementById('todays-tasks');
 const tomorrowsTasks = document.getElementById('tomorrows-tasks');
+const todoFullscreenButton = document.getElementById('todo-fullscreen-button');
+const todoContainer = document.getElementById('todo-container');
+const main = document.getElementById('main');
+const todoFullscreenIcon = document.getElementById('todo-fullscreen-icon');
+
 const date = new Date();
+let isTodoFullscreen = false;
+todoFullscreenButton.onclick = todoFullscreen;
+
 document.addEventListener('DOMContentLoaded', loadTasks);
 
 newTask.addEventListener('submit', function (event) {
@@ -135,4 +143,20 @@ function removeTask(event) {
     tasks.splice(taskIndex, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     loadTasks();
+}
+
+function todoFullscreen() {
+    if(isTodoFullscreen === false) {
+        todoContainer.style.width = "100vw";
+        main.style.flexWrap = "wrap";
+        todoFullscreenIcon.src = "images/exit-fullscreen.svg";
+        isTodoFullscreen = true;
+    }
+    else {
+        todoContainer.attributeStyleMap.delete('width');
+        main.attributeStyleMap.clear();
+        todoFullscreenIcon.src = "images/fullscreen.svg";
+        isTodoFullscreen = false;
+    }
+    
 }
