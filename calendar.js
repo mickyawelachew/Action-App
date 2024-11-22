@@ -31,15 +31,22 @@ function renderCalendar(date) {
 
   // Current month's days
   for (let i = 1; i <= lastDate; i++) {
+
     //sets the current day to a diffrent color
-    if(i === date.getDate() && month === actualDate.getMonth() && year === actualDate.getFullYear()){
+    if(i === actualDate.getDate() && month === actualDate.getMonth() && year === actualDate.getFullYear()){
       if (taskDates.indexOf(`${year}-${month+1}-${i}`) !== -1) {
+        days += `<div class="current-day day-has-task">${i}</div>`;
+      } 
+      else if(taskDates.indexOf(`${year}-${month+1}-0${i}`) !== -1) {
         days += `<div class="current-day day-has-task">${i}</div>`;
       } else {
         days += `<div class="current-day">${i}</div>`; 
       }
     } 
     else if(taskDates.indexOf(`${year}-${month+1}-${i}`) != -1) {
+      days += `<div class="day-has-task">${i}</div>`;
+    }
+    else if(taskDates.indexOf(`${year}-${month+1}-0${i}`) !== -1) {
       days += `<div class="day-has-task">${i}</div>`;
     } else {
         days += `<div>${i}</div>`;
