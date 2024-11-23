@@ -10,10 +10,13 @@ const todoFullscreenButton = document.getElementById('todo-fullscreen-button');
 const todoContainer = document.getElementById('todo-container');
 const main = document.getElementById('main');
 const todoFullscreenIcon = document.getElementById('todo-fullscreen-icon');
+const addTaskButton = document.getElementById('add-task-button');
+const newTaskForm = document.getElementById('new-task');
 
 const date = new Date();
 let isTodoFullscreen = false;
 todoFullscreenButton.onclick = todoFullscreen;
+addTaskButton.onclick = newTaskDisplay;
 
 let taskDates = [];
 
@@ -173,6 +176,11 @@ function todoFullscreen() {
         todoFullscreenIcon.src = "images/fullscreen.svg";
         isTodoFullscreen = false;
     }
+}
+
+function newTaskDisplay() { 
+    newTaskForm.style.display = "inline-block";
+    console.log("testing");
 }
 
 loadTasks();

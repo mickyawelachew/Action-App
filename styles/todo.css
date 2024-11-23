@@ -8,6 +8,13 @@
     text-align: center;
     border-radius: 10px;
     padding: 10px;
+    height: 30px;
+}
+
+.todo-header div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #todo-header-text {
@@ -26,6 +33,15 @@
 
 #todo-fullscreen-icon {
     height: 25px;
+}
+
+#add-task-button {
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0,0,0, 0);
+    font-size: 30px;
+    padding: 0px;
+    border: none;
 }
 
 .todo-container {

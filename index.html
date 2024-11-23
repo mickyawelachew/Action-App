@@ -13,10 +13,22 @@
             A C T I O N &nbsp; A P P
         </header>
         <main id="main">
+            <div class="new-task" id="new-task">
+                <p id="new-task-header">Create New Task</p>
+                <form id="new-task-form">
+                    <input class="new-task-input" id="new-task-name" type="text" placeholder="Task Name" required>
+                    <input class="new-task-input" id="new-task-date" type="date" placeholder="mm/dd/yy">
+                    <textarea class="new-task-input" id="new-task-description" placeholder="Task Description"></textarea>
+                    <button id="new-task-button">Add New Task</button>
+                </form>
+            </div>
             <div class="todo-container" id="todo-container">
                 <div class="todo-header">
                     <h3 id="todo-header-text">My Todo List</h3>
-                    <button id="todo-fullscreen-button"><img src="images/fullscreen.svg" id="todo-fullscreen-icon"></button>
+                    <div>
+                        <button id="add-task-button">+</button>
+                        <button id="todo-fullscreen-button"><img src="images/fullscreen.svg" id="todo-fullscreen-icon"></button>
+                    </div>
                 </div>
                 <div class="todo-body" id="todo-body">
                     <h2 id="todays-tasks-header">Todays Problem</h2>
@@ -51,15 +63,6 @@
                         </div>
                         <div class="days"></div>
                       </div>
-                </div>
-                <div class="new-task">
-                    <p id="new-task-header">Create New Task</p>
-                    <form id="new-task-form">
-                        <input class="new-task-input" id="new-task-name" type="text" placeholder="Task Name" required>
-                        <input class="new-task-input" id="new-task-date" type="date" placeholder="mm/dd/yy">
-                        <textarea class="new-task-input" id="new-task-description" placeholder="Task Description"></textarea>
-                        <button id="new-task-button">Add New Task</button>
-                    </form>
                 </div>
                 <div class="smaller-info-container">
                     <div class="networking">

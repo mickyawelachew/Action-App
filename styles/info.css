@@ -21,8 +21,10 @@
 }
 
 .new-task {
-    flex: 1;
+    position: absolute;
+    top: 400px;
     height: 200px;
+    display: none;
 }
 
 .new-task-input {
