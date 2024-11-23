@@ -2,7 +2,6 @@
     width: 650px;
     min-width: 500px;
     height: fit-content;
-    padding: 20px;
 }
 
 .calendar, .new-task, .networking, .points, .booking {
@@ -17,6 +16,7 @@
 
 .calendar {
     flex: 1;
+    padding: 0px;
     height: 500px;
 }
 

@@ -1,12 +1,10 @@
 .calendar-container {
-    max-width: 600px;
-    min-width: 400px;
-    height: 500px;
+    height: 100%;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
   
 .calendar-header {
@@ -19,6 +17,25 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.calendar-header-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#calendar-fullscreen-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0, 0);
+    border: none;
+    cursor: pointer;
+}
+
+#calendar-fullscreen-icon {
+    height: 25px;
+}
   
 .calendar-header button {
     background: none;
@@ -28,7 +45,13 @@
     cursor: pointer;
 }
   
-.weekdays, .days {
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
@@ -47,7 +70,7 @@
     margin-left: 5px;
     margin-right: 5px;
     margin-top: 5px;
-    height: 388px;
+    height: calc(100% - 120px);
 }
 
 .day-has-task {
