@@ -29,13 +29,16 @@
                     </div>
                 </div>
             </div>
-            <div class="info-container">
-                <div class="calendar">
-                    <div class="calendar-container">
+            <div class="info-container" id="info-container">
+                <div class="calendar" id="calendar">
+                    <div class="calendar-container" id="calendar-container">
                         <div class="calendar-header">
                           <button id="prev">❮</button>
                           <h2 id="month-year"></h2>
-                          <button id="next">❯</button>
+                          <div class="calendar-header-right">
+                            <button id="next">❯</button>
+                            <button id="calendar-fullscreen-button"><img src="images/fullscreen.svg" id="calendar-fullscreen-icon"></button>
+                          </div>
                         </div>
                         <div class="weekdays">
                           <div>Sun</div>

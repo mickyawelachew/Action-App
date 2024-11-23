@@ -1,9 +1,16 @@
-const calendar = document.querySelector('.calendar-container');
+const calendar = document.getElementById('.calendar-container');
 const monthYear = document.getElementById('month-year');
 const daysContainer = document.querySelector('.days');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
+const calendarFullscreenButton = document.getElementById('calendar-fullscreen-button');
+const infoContainer = document.getElementById('info-container');
+const calendarContainer = document.getElementById('calendar');
+const calendarFullscreenIcon = document.getElementById('calendar-fullscreen-icon');
 
+calendarFullscreenButton.onclick = calendarFullscreen;
+
+let isCalendarFullscreen = false;
 const months = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
@@ -71,7 +78,21 @@ function navigateCalendar(direction) {
 prevButton.addEventListener('click', () => navigateCalendar(-1));
 nextButton.addEventListener('click', () => navigateCalendar(1));
 
-
+function calendarFullscreen() {
+  if(isCalendarFullscreen === false) {
+    infoContainer.style.width = "100vw";
+    todoContainer.style.display = "none";
+    calendarContainer.style.height = "90vh";
+    calendarFullscreenIcon.src = "images/exit-fullscreen.svg";
+    isCalendarFullscreen = true;
+  } else {
+    infoContainer.attributeStyleMap.clear();
+    todoContainer.attributeStyleMap.clear();
+    calendarContainer.attributeStyleMap.clear();
+    calendarFullscreenIcon.src = "images/fullscreen.svg";
+    isCalendarFullscreen = false;
+  }
+}
 
 // Initial Render
 renderCalendar(currentDate);

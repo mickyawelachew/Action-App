@@ -160,10 +160,14 @@ function todoFullscreen() {
     if(isTodoFullscreen === false) {
         todoContainer.style.width = "100vw";
         main.style.flexWrap = "wrap";
+        infoContainer.style.width = "100vw";
+        calendarContainer.style.height = "90vh";
         todoFullscreenIcon.src = "images/exit-fullscreen.svg";
         isTodoFullscreen = true;
     }
     else {
+        infoContainer.attributeStyleMap.clear();
+        calendarContainer.attributeStyleMap.clear();
         todoContainer.attributeStyleMap.delete('width');
         main.attributeStyleMap.clear();
         todoFullscreenIcon.src = "images/fullscreen.svg";
