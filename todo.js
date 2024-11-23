@@ -12,11 +12,18 @@ const main = document.getElementById('main');
 const todoFullscreenIcon = document.getElementById('todo-fullscreen-icon');
 const addTaskButton = document.getElementById('add-task-button');
 const newTaskForm = document.getElementById('new-task');
+const newTaskHeader = document.getElementById('new-task-header');
+const newTaskExitButton = document.getElementById('new-task-exit-button');
 
 const date = new Date();
 let isTodoFullscreen = false;
 todoFullscreenButton.onclick = todoFullscreen;
 addTaskButton.onclick = newTaskDisplay;
+newTaskExitButton.onclick = newTaskHide;
+
+let isDragging = false;
+let offsetX = 0;
+let offsetY = 0;
 
 let taskDates = [];
 
@@ -178,9 +185,35 @@ function todoFullscreen() {
     }
 }
 
+newTaskHeader.addEventListener('mousedown', (event) => {
+    isDragging = true;
+    offsetX = event.clientX - newTaskForm.offsetLeft;
+    offsetY = event.clientY - newTaskForm.offsetTop;
+});
+
+document.addEventListener('mousemove', (event) => {
+    if (isDragging) {
+      const x = event.clientX - offsetX;
+      const y = event.clientY - offsetY;
+
+      // Set new position
+      newTaskForm.style.left = `${x}px`;
+      newTaskForm.style.top = `${y}px`;
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+    }
+});
+
 function newTaskDisplay() { 
     newTaskForm.style.display = "inline-block";
-    console.log("testing");
+}
+
+function newTaskHide() {
+    newTaskForm.attributeStyleMap.clear();
 }
 
 loadTasks();
