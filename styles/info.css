@@ -1,6 +1,6 @@
 .info-container {
     width: 700px;
-    min-width: 500px;
+    min-width: 300px;
     height: fit-content;
 }
 
@@ -22,11 +22,13 @@
 
 .new-task {
     padding-top: 7px;
-    width: 400px;
+    max-width: 400px;
+    min-width: 200px;
     z-index: 99;
     position: absolute;
     top: 400px;
-    height: 200px;
+    max-height: 200px;
+    min-height: 50px;
     display: none;
     box-shadow: 0 3px 8px rgba(0,0,0,0.25);
     background: #f9f9f9;

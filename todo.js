@@ -36,11 +36,9 @@ newTask.addEventListener('submit', function (event) {
 });
 
 function addTask() {
-    const taskNameInput = document.getElementById('new-task-name');
-    const newTaskDate = document.getElementById('new-task-date');
-    const todoBody = document.getElementById('todo-body');
     const taskName = taskNameInput.value.trim();
     const taskDate = newTaskDate.value.trim();
+    const taskDescription = newTaskDiscription.value.trim();
 
     taskDates.push(newTaskDate.value);
 
@@ -54,7 +52,7 @@ function addTask() {
     const taskHTML = `
         <div class="task" id="task-${taskNumber}">
             <input type="checkbox" class="task-button" id="task-button-${taskNumber}">
-            <div class="task-body">
+            <div class="task-body" id="task-body-${taskNumber}">
                 <div class="task-name">
                     ${taskName}
                 </div>
@@ -63,6 +61,10 @@ function addTask() {
                 </div>
             </div>
             <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${taskNumber}">
+            <div></div>
+            <div class="task-description" id="task-description-${taskNumber}">
+                ${taskDescription}
+            </div>
         </div>
     `;
     if(taskDate === `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`){
@@ -102,8 +104,8 @@ function saveTasks() {
         const taskName = task.querySelector('.task-name').innerText;
         const taskDate = task.querySelector('.date').innerText;
         const isChecked = task.querySelector('.task-button').checked;
-        const delButton = task.querySelector('.task-remove-button').style.display;
-        tasks.push({ name: taskName, date: taskDate, checked: isChecked, display: delButton});
+        const taskDescription = task.querySelector('.task-description').innerText;
+        tasks.push({ name: taskName, date: taskDate, checked: isChecked, description: taskDescription});
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
     localStorage.setItem('taskDates', JSON.stringify(taskDates));
@@ -120,7 +122,7 @@ function loadTasks() {
         const taskHTML = `
             <div class="task" id="task-${index}">
                 <input type="checkbox" class="task-button" id="task-button-${index}" ${task.checked ? 'checked' : ''}>
-                <div class="task-body">
+                <div class="task-body" id="task-body-${index}">
                     <div class="task-name">
                         ${task.name}
                     </div>
@@ -129,6 +131,10 @@ function loadTasks() {
                     </div>
                 </div>
                 <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${index}">
+                <div></div>
+                <div class="task-description" id="task-description-${index}">
+                    ${task.description}
+                </div>
             </div>
         `;
         if(task.date <= `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`){
@@ -148,7 +154,26 @@ todoBody.addEventListener('click', function (event) {
         event.preventDefault();
         removeTask(event);
     }
+    if (event.target.closest('.task-body')){
+        displayDiscription(event);
+    }
 });
+
+function displayDiscription(event) {
+    const taskIndex = event.target.getAttribute('id').replace('task-body-', '');
+    const tempTaskDescription = document.getElementById(`task-description-${taskIndex}`);
+    if(tempTaskDescription.style.display == "block") {
+        tempTaskDescription.attributeStyleMap.clear();
+        event.target.attributeStyleMap.clear();
+    } else {
+        event.target.style.borderBottomRightRadius = "0px";
+        event.target.style.borderBottomLeftRadius = "0px";
+        tempTaskDescription.style.display = "block";
+    }
+    
+    
+    
+}
 
 function completeTask(event) {
     //const regex = /task-button/;
