@@ -14,6 +14,7 @@ const addTaskButton = document.getElementById('add-task-button');
 const newTaskForm = document.getElementById('new-task');
 const newTaskHeader = document.getElementById('new-task-header');
 const newTaskExitButton = document.getElementById('new-task-exit-button');
+const newTaskDiscription = document.getElementById('new-task-description');
 
 const date = new Date();
 let isTodoFullscreen = false;
@@ -74,7 +75,8 @@ function addTask() {
     sortTasks();
     renderCalendar(currentDate);
     taskNameInput.value = '';
-    newTaskDate.value = '';
+    newTaskDiscription.value = '';
+    newTaskForm.style.display = "none";
 }
 
 function sortTasks() {
@@ -209,7 +211,17 @@ document.addEventListener('mouseup', () => {
 });
 
 function newTaskDisplay() { 
+    newTaskDate.value = formattedDate;
     newTaskForm.style.display = "inline-block";
+}
+
+function newTaskDisplayFromCalendar(event) {
+    console.log(currentDate.getMonth()+1);
+    const tempDate = String(currentDate.getMonth()+1).padStart(2, '0');
+    newTaskDate.value = `${currentDate.getFullYear()}-${tempDate}-${event.target.innerHTML.padStart(2, '0').substring(0, 2)}`;
+    newTaskForm.style.display = "inline-block";
+    newTaskForm.style.top = `${event.clientY+40}px`;
+    newTaskForm.style.left = `${event.clientX-250}px`;
 }
 
 function newTaskHide() {

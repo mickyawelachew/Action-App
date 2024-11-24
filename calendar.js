@@ -16,6 +16,13 @@ const months = [
   "July", "August", "September", "October", "November", "December"
 ];
 
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, '0'); 
+const dd = String(today.getDate()).padStart(2, '0');
+
+const formattedDate = `${yyyy}-${mm}-${dd}`;
+
 let currentDate = new Date();
 const actualDate = new Date();
 
@@ -40,28 +47,35 @@ function renderCalendar(date) {
   for (let i = 1; i <= lastDate; i++) {
 
     //sets the current day to a diffrent color
+    const targetDate = `${year}-${String(month+1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
     if(i === actualDate.getDate() && month === actualDate.getMonth() && year === actualDate.getFullYear()){
-      if (taskDates.indexOf(`${year}-${month+1}-${i}`) !== -1) {
-        days += `<div class="current-day day-has-task">${i}</div>`;
-      } 
-      else if(taskDates.indexOf(`${year}-${month+1}-0${i}`) !== -1) {
-        days += `<div class="current-day day-has-task">${i}</div>`;
+      if (taskDates.indexOf(targetDate) !== -1) {
+        const count = taskDates.filter(item => item === targetDate).length;
+        days += `
+        <div class="current-day day-has-task active">
+          <div class="date-display">${i}</div>
+          <div class="num-of-tasks">${count}</div>
+        </div>
+        `;
       } else {
-        days += `<div class="current-day">${i}</div>`; 
+        days += `<div class="current-day active">${i}</div>`; 
       }
     } 
-    else if(taskDates.indexOf(`${year}-${month+1}-${i}`) != -1) {
-      days += `<div class="day-has-task">${i}</div>`;
-    }
-    else if(taskDates.indexOf(`${year}-${month+1}-0${i}`) !== -1) {
-      days += `<div class="day-has-task">${i}</div>`;
+    else if(taskDates.indexOf(targetDate) !== -1) {
+      const count = taskDates.filter(item => item === targetDate).length;
+      days += `
+        <div class="day-has-task active">
+          <div class="date-display">${i}</div>
+          <div class="num-of-tasks">${count}</div>
+        </div>
+        `;
     } else {
-        days += `<div>${i}</div>`;
+        days += `<div class="active">${i}</div>`;
     }
   }
 
   // Next month's days to fill
-  const nextDays = 42 - days.split('</div>').length + 1;
+  const nextDays = 42 - days.split('active').length + 1;
   for (let j = 1; j <= nextDays; j++) {
     days += `<div class="inactive">${j}</div>`;
   }
@@ -93,6 +107,12 @@ function calendarFullscreen() {
     isCalendarFullscreen = false;
   }
 }
+
+daysContainer.addEventListener('click', function (event){
+    console.log(event.target.innerHTML.substring(0, 2));
+    newTaskDisplayFromCalendar(event);
+    
+});
 
 // Initial Render
 renderCalendar(currentDate);
