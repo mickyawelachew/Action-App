@@ -1,0 +1,42 @@
+body {
+    font-family: 'Poppins', 'sans-serif';
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+
+#login-container {
+    padding: 20px 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+    width: 30vw;
+    height: 30vw;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+#login-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    margin-bottom: 10px;
+}
+
+#login-form {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+#username-input {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}

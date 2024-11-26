@@ -10,7 +10,7 @@ header {
     z-index: 100;
     background: linear-gradient(135deg, #303678, #151633);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: fixed;
     top: 0;
