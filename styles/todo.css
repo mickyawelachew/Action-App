@@ -8,6 +8,13 @@
     text-align: center;
     border-radius: 10px;
     padding: 10px;
+    height: 30px;
+}
+
+.todo-header div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #todo-header-text {
@@ -26,6 +33,15 @@
 
 #todo-fullscreen-icon {
     height: 25px;
+}
+
+#add-task-button {
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0,0,0, 0);
+    font-size: 30px;
+    padding: 0px;
+    border: none;
 }
 
 .todo-container {
@@ -53,10 +69,25 @@
 }
 
 .task {
-    display: flex;
+    display: grid;
+    grid-template-columns: 35px 1fr 30px;
     align-items: center;
     margin-bottom: 10px;
-    height: 45px;
+}
+
+.task-name, .date {
+    pointer-events: none;
+}
+
+.task-description {
+    padding: 10px;
+    max-width: 100%;
+    height: fit-content;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: none;
 }
 
 .task-button {
@@ -123,6 +154,12 @@
     padding: 10px;
     font-size: 0.9rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.task-body:hover {
+    height: 32px;
 }
 
 #todays-tasks-header {

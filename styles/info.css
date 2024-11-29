@@ -1,6 +1,6 @@
 .info-container {
-    width: 650px;
-    min-width: 500px;
+    width: 700px;
+    min-width: 300px;
     height: fit-content;
 }
 
@@ -17,12 +17,44 @@
 .calendar {
     flex: 1;
     padding: 0px;
-    height: 500px;
+    height: 600px;
 }
 
 .new-task {
-    flex: 1;
-    height: 200px;
+    padding-top: 7px;
+    max-width: 400px;
+    min-width: 200px;
+    z-index: 99;
+    position: absolute;
+    top: 50vh;
+    max-height: 200px;
+    min-height: 50px;
+    display: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+    background: #f9f9f9;
+}
+
+#new-task-header {
+    margin-bottom: 10px;
+    cursor: move;
+    display: flex;
+    height: 25px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#new-task-exit-button {
+    text-align: center; 
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    transition: all 0.15s;
+}
+
+#new-task-exit-button:hover {
+    font-size: 17px;
 }
 
 .new-task-input {
@@ -43,11 +75,6 @@
     gap: 15px;
     grid-template-columns: 75fr 25fr;
     grid-template-rows: 1fr 3fr;
-}
-
-#new-task-header {
-    margin-top: 0px;
-    margin-bottom: 10px;
 }
 
 #new-task-name {
@@ -103,6 +130,8 @@
 
 .points {
     height: 100%;
+    border-radius:5px;
+    background-color:lightgray;
 }
 
 .booking {

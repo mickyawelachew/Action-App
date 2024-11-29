@@ -10,10 +10,21 @@ const todoFullscreenButton = document.getElementById('todo-fullscreen-button');
 const todoContainer = document.getElementById('todo-container');
 const main = document.getElementById('main');
 const todoFullscreenIcon = document.getElementById('todo-fullscreen-icon');
+const addTaskButton = document.getElementById('add-task-button');
+const newTaskForm = document.getElementById('new-task');
+const newTaskHeader = document.getElementById('new-task-header');
+const newTaskExitButton = document.getElementById('new-task-exit-button');
+const newTaskDiscription = document.getElementById('new-task-description');
 
 const date = new Date();
 let isTodoFullscreen = false;
 todoFullscreenButton.onclick = todoFullscreen;
+addTaskButton.onclick = newTaskDisplay;
+newTaskExitButton.onclick = newTaskHide;
+
+let isDragging = false;
+let offsetX = 0;
+let offsetY = 0;
 
 let taskDates = [];
 
@@ -25,11 +36,9 @@ newTask.addEventListener('submit', function (event) {
 });
 
 function addTask() {
-    const taskNameInput = document.getElementById('new-task-name');
-    const newTaskDate = document.getElementById('new-task-date');
-    const todoBody = document.getElementById('todo-body');
     const taskName = taskNameInput.value.trim();
     const taskDate = newTaskDate.value.trim();
+    const taskDescription = newTaskDiscription.value.trim();
 
     taskDates.push(newTaskDate.value);
 
@@ -43,7 +52,7 @@ function addTask() {
     const taskHTML = `
         <div class="task" id="task-${taskNumber}">
             <input type="checkbox" class="task-button" id="task-button-${taskNumber}">
-            <div class="task-body">
+            <div class="task-body" id="task-body-${taskNumber}">
                 <div class="task-name">
                     ${taskName}
                 </div>
@@ -51,7 +60,11 @@ function addTask() {
                     ${taskDate}
                 </div>
             </div>
-            <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${taskNumber}">
+            <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${taskNumber}" onclick="points()">
+            <div></div>
+            <div class="task-description" id="task-description-${taskNumber}">
+                ${taskDescription}
+            </div>
         </div>
     `;
     if(taskDate === `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`){
@@ -64,7 +77,8 @@ function addTask() {
     sortTasks();
     renderCalendar(currentDate);
     taskNameInput.value = '';
-    newTaskDate.value = '';
+    newTaskDiscription.value = '';
+    newTaskForm.style.display = "none";
 }
 
 function sortTasks() {
@@ -90,8 +104,8 @@ function saveTasks() {
         const taskName = task.querySelector('.task-name').innerText;
         const taskDate = task.querySelector('.date').innerText;
         const isChecked = task.querySelector('.task-button').checked;
-        const delButton = task.querySelector('.task-remove-button').style.display;
-        tasks.push({ name: taskName, date: taskDate, checked: isChecked, display: delButton});
+        const taskDescription = task.querySelector('.task-description').innerText;
+        tasks.push({ name: taskName, date: taskDate, checked: isChecked, description: taskDescription});
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
     localStorage.setItem('taskDates', JSON.stringify(taskDates));
@@ -108,7 +122,7 @@ function loadTasks() {
         const taskHTML = `
             <div class="task" id="task-${index}">
                 <input type="checkbox" class="task-button" id="task-button-${index}" ${task.checked ? 'checked' : ''}>
-                <div class="task-body">
+                <div class="task-body" id="task-body-${index}">
                     <div class="task-name">
                         ${task.name}
                     </div>
@@ -116,7 +130,11 @@ function loadTasks() {
                         ${task.date}
                     </div>
                 </div>
-                <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${index}">
+                <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${index}" onclick="points()">
+                <div></div>
+                <div class="task-description" id="task-description-${index}">
+                    ${task.description}
+                </div>
             </div>
         `;
         if(task.date <= `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`){
@@ -136,7 +154,26 @@ todoBody.addEventListener('click', function (event) {
         event.preventDefault();
         removeTask(event);
     }
+    if (event.target.closest('.task-body')){
+        displayDiscription(event);
+    }
 });
+
+function displayDiscription(event) {
+    const taskIndex = event.target.getAttribute('id').replace('task-body-', '');
+    const tempTaskDescription = document.getElementById(`task-description-${taskIndex}`);
+    if(tempTaskDescription.style.display == "block") {
+        tempTaskDescription.attributeStyleMap.clear();
+        event.target.attributeStyleMap.clear();
+    } else {
+        event.target.style.borderBottomRightRadius = "0px";
+        event.target.style.borderBottomLeftRadius = "0px";
+        tempTaskDescription.style.display = "block";
+    }
+    
+    
+    
+}
 
 function completeTask(event) {
     //const regex = /task-button/;
@@ -175,4 +212,53 @@ function todoFullscreen() {
     }
 }
 
+newTaskHeader.addEventListener('mousedown', (event) => {
+    isDragging = true;
+    offsetX = event.clientX - newTaskForm.offsetLeft;
+    offsetY = event.clientY - newTaskForm.offsetTop;
+});
+
+document.addEventListener('mousemove', (event) => {
+    if (isDragging) {
+      const x = event.clientX - offsetX;
+      const y = event.clientY - offsetY;
+
+      // Set new position
+      newTaskForm.style.left = `${x}px`;
+      newTaskForm.style.top = `${y}px`;
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+    }
+});
+
+function newTaskDisplay() { 
+    newTaskDate.value = formattedDate;
+    newTaskForm.style.display = "inline-block";
+}
+
+function newTaskDisplayFromCalendar(event) {
+    console.log(currentDate.getMonth()+1);
+    const tempDate = String(currentDate.getMonth()+1).padStart(2, '0');
+    newTaskDate.value = `${currentDate.getFullYear()}-${tempDate}-${event.target.innerHTML.padStart(2, '0').substring(0, 2)}`;
+    newTaskForm.style.display = "inline-block";
+    newTaskForm.style.top = `${event.clientY+40}px`;
+    newTaskForm.style.left = `${event.clientX-250}px`;
+}
+
+function newTaskHide() {
+    newTaskForm.attributeStyleMap.clear();
+}
+
 loadTasks();
+
+let count = 0
+let pointnumbers = document.getElementById("pointnumbers")
+function points(){
+count = count + 1
+pointnumbers.innerText = count
+console.log(count)
+}

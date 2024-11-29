@@ -78,23 +78,45 @@
     color: #fff;
 }
   
+.num-of-tasks {
+    position: relative;
+    pointer-events: none;
+    top: -18px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    
+}
 
+.date-display {
+    position: relative;
+    height: 110%;
+    width: 110%;
+}
+
+.days div.active {
+    position: relative;
+}
 
 .days div {
-    margin: 3px;
+    margin: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     cursor: pointer;
 }
-  
-.days div:hover, .current-day {
+
+.days div.active:hover, .current-day {
     outline: 2px solid #05052a;
 }
   
 .days div.inactive {
     color: #ccc;
     pointer-events: none;
+}
+
+.days div.active {
+    margin: 3px;
 }
   

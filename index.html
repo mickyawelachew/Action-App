@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, intital-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Action App Home</title>
         <link rel="stylesheet" href="styles/general.css">
         <link rel="stylesheet" href="styles/todo.css">
@@ -12,20 +12,44 @@
     </head>
     <body>
         <header>
+            <div></div>
             A C T I O N &nbsp; A P P
+            <div class="">
+                <div>
+                Sign Up
+                </div>
+                <div>
+                <a href=login.html>Login In</a>
+                </div>
+            </div>
         </header>
         <main id="main">
+            <div class="new-task" id="new-task">
+                <div id="new-task-header">
+                    <p>Create New Task</p>
+                    <button id="new-task-exit-button">X</button>
+                </div>
+                <form id="new-task-form">
+                    <input class="new-task-input" id="new-task-name" type="text" placeholder="Task Name" required>
+                    <input class="new-task-input" id="new-task-date" type="date">
+                    <textarea class="new-task-input" id="new-task-description" placeholder="Task Description"></textarea>
+                    <button id="new-task-button">Add New Task</button>
+                </form>
+            </div>
             <div class="todo-container" id="todo-container">
                 <div class="todo-header">
                     <h3 id="todo-header-text">My Todo List</h3>
-                    <button id="todo-fullscreen-button"><img src="images/fullscreen.svg" id="todo-fullscreen-icon"></button>
+                    <div>
+                        <button id="add-task-button">+</button>
+                        <button id="todo-fullscreen-button"><img src="images/fullscreen.svg" id="todo-fullscreen-icon"></button>
+                    </div>
                 </div>
                 <div class="todo-body" id="todo-body">
-                    <h2 id="todays-tasks-header">Todays Problem</h2>
+                    <h2 id="todays-tasks-header">Today's Tasks </h2>
                     <div id="todays-tasks">
                         
                     </div>
-                    <h2 id="tomorrows-tasks-header">Tomorrows Problem</h2>
+                    <h2 id="tomorrows-tasks-header">Things I should do</h2>
                     <div id="tomorrows-tasks">
                         
                     </div>
@@ -54,22 +78,14 @@
                         <div class="days"></div>
                       </div>
                 </div>
-                <div class="new-task">
-                    <p id="new-task-header">Create New Task</p>
-                    <form id="new-task-form">
-                        <input class="new-task-input" id="new-task-name" type="text" placeholder="Task Name" required>
-                        <input class="new-task-input" id="new-task-date" type="date" placeholder="mm/dd/yy">
-                        <textarea class="new-task-input" id="new-task-description" placeholder="Task Description"></textarea>
-                        <button id="new-task-button">Add New Task</button>
-                    </form>
-                </div>
                 <div class="smaller-info-container">
                     <div class="networking">
                         Networking
                     </div>
                     <div class="points-booking">
                         <div class="points">
-                            Points
+                            Weekly Points
+                            <h2 id="pointnumbers">0</h2>
                         </div>
                         <div class="booking">
                             Booking
