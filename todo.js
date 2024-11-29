@@ -60,7 +60,7 @@ function addTask() {
                     ${taskDate}
                 </div>
             </div>
-            <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${taskNumber}">
+            <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${taskNumber}" onclick="points()">
             <div></div>
             <div class="task-description" id="task-description-${taskNumber}">
                 ${taskDescription}
@@ -130,7 +130,7 @@ function loadTasks() {
                         ${task.date}
                     </div>
                 </div>
-                <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${index}">
+                <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${index}" onclick="points()">
                 <div></div>
                 <div class="task-description" id="task-description-${index}">
                     ${task.description}
@@ -254,3 +254,11 @@ function newTaskHide() {
 }
 
 loadTasks();
+
+let count = 0
+let pointnumbers = document.getElementById("pointnumbers")
+function points(){
+count = count + 1
+pointnumbers.innerText = count
+console.log(count)
+}
