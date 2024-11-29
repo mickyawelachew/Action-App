@@ -45,7 +45,7 @@
 }
 
 .todo-container {
-    height: fit-content;
+    height: 200vh;
     width: 400px;
     min-width: 250px;
     background-color:#fdfeff;
@@ -61,7 +61,7 @@
 }
 
 .todo-body {
-    height: 80vh;
+    height: 190vh;
     overflow-y: auto;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -164,4 +164,8 @@
 
 #todays-tasks-header {
     margin-top: 0px;
+    
+}
+#todays-tasks{
+    margin-bottom:300px;
 }
