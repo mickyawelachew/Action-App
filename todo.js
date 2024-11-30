@@ -15,6 +15,7 @@ const newTaskForm = document.getElementById('new-task');
 const newTaskHeader = document.getElementById('new-task-header');
 const newTaskExitButton = document.getElementById('new-task-exit-button');
 const newTaskDiscription = document.getElementById('new-task-description');
+const pointnumbers = document.getElementById("pointnumbers")
 
 const date = new Date();
 let isTodoFullscreen = false;
@@ -27,6 +28,8 @@ let offsetX = 0;
 let offsetY = 0;
 
 let taskDates = [];
+
+let pointCount = 0;
 
 document.addEventListener('DOMContentLoaded', loadTasks);
 
@@ -60,7 +63,7 @@ function addTask() {
                     ${taskDate}
                 </div>
             </div>
-            <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${taskNumber}" onclick="points()">
+            <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${taskNumber}">
             <div></div>
             <div class="task-description" id="task-description-${taskNumber}">
                 ${taskDescription}
@@ -109,6 +112,7 @@ function saveTasks() {
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
     localStorage.setItem('taskDates', JSON.stringify(taskDates));
+    localStorage.setItem('points', JSON.stringify(pointCount));
 }
 
 function loadTasks() {
@@ -117,6 +121,8 @@ function loadTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     taskDates = JSON.parse(localStorage.getItem('taskDates')) || [];
+
+    loadedPointCount = JSON.parse(localStorage.getItem('points'));
 
     tasks.forEach((task, index) => {
         const taskHTML = `
@@ -130,7 +136,7 @@ function loadTasks() {
                         ${task.date}
                     </div>
                 </div>
-                <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${index}" onclick="points()">
+                <img src="images/recycle-bin.png" class="task-remove-button" id="task-remove-button-${index}">
                 <div></div>
                 <div class="task-description" id="task-description-${index}">
                     ${task.description}
@@ -142,7 +148,17 @@ function loadTasks() {
         } else {
             tomorrowsTasks.innerHTML += taskHTML;
         }
-    });
+
+        const tempTaskName = document.getElementById(`task-body-${index}`).querySelector('.task-name');  
+        if(task.checked) {
+            tempTaskName.style.textDecoration = 'line-through';
+        } else {
+            tempTaskName.style.textDecoration = 'none';
+        }
+
+        });
+        pointCount = loadedPointCount;
+        pointnumbers.innerHTML = pointCount;
 }
 
 
@@ -154,8 +170,11 @@ todoBody.addEventListener('click', function (event) {
         event.preventDefault();
         removeTask(event);
     }
-    if (event.target.closest('.task-body')){
+    if (event.target.closest('.task-body')) {
         displayDiscription(event);
+    }
+    if (event.target.closest('.task-button')) {
+        completeTask(event);
     }
 });
 
@@ -176,8 +195,17 @@ function displayDiscription(event) {
 }
 
 function completeTask(event) {
-    //const regex = /task-button/;
-    //const taskButtonId = event.target.getAttribute('id');
+    const taskIndex = event.target.getAttribute('id').replace('task-button-', '');
+    const tempTaskBody = document.getElementById(`task-body-${taskIndex}`);
+    const tempTaskName = tempTaskBody.querySelector('.task-name');   
+    if(event.target.checked) {
+        tempTaskName.style.textDecoration = 'line-through';
+        points(0.5);
+    } else {
+        tempTaskName.style.textDecoration = 'none' 
+        points(-0.5);
+    }
+
     saveTasks();
 }
 
@@ -255,10 +283,7 @@ function newTaskHide() {
 
 loadTasks();
 
-let count = 0
-let pointnumbers = document.getElementById("pointnumbers")
-function points(){
-count = count + 1
-pointnumbers.innerText = count
-console.log(count)
+function points(num){
+    pointCount += num;
+    pointnumbers.innerText = pointCount;
 }
