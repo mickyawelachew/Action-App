@@ -9,7 +9,6 @@ const calendarContainer = document.getElementById('calendar');
 const calendarFullscreenIcon = document.getElementById('calendar-fullscreen-icon');
 
 calendarFullscreenButton.onclick = calendarFullscreen;
-//..//
 
 let isCalendarFullscreen = false;
 const months = [
