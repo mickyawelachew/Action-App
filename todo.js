@@ -143,7 +143,7 @@ function loadTasks() {
                 </div>
             </div>
         `;
-        if(task.date <= `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`){
+        if(task.date <= `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2, '0')}-${date.getDate()}`){
             todaysTasks.innerHTML += taskHTML;
         } else {
             tomorrowsTasks.innerHTML += taskHTML;
