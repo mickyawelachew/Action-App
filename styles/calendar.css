@@ -59,10 +59,10 @@
 
 .weekdays div {
     background: #f0f0f0;
-    padding: 10px 0;
+    padding: 7px 3px;
     font-weight: bold;
     border-radius: 10px;
-    margin: 5px 3px 0px 3px;
+    margin: 6px 3px 0px 3px;
 }
 
 .days {
