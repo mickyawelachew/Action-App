@@ -155,8 +155,6 @@
 }
 
 .note {
-    flex-direction: column;
-    justify-content: left;
     flex: 1;
     margin-top: 10px;
     height: 50px;
@@ -164,7 +162,23 @@
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
-.note .div {
+.note-date, .note-firstline {
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.note-title {
+    text-align: left;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.note-info-container {
+    text-align: left;
+}
+
+
+.note-date, .note-firstline {
     display: inline-block;
 }
 
