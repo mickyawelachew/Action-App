@@ -17,6 +17,11 @@ const newTaskExitButton = document.getElementById('new-task-exit-button');
 const newTaskDiscription = document.getElementById('new-task-description');
 const pointnumbers = document.getElementById("pointnumbers")
 
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, '0'); 
+const dd = String(today.getDate()).padStart(2, '0');
+const correctDate = `${today.getMonth()+1}-${today.getDate()}-${yyyy}`
 const date = new Date();
 let isTodoFullscreen = false;
 todoFullscreenButton.onclick = todoFullscreen;

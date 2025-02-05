@@ -3,7 +3,8 @@ const notesBody = document.getElementById('notes-body');
 const notesHeader = document.getElementById('notes-header');   
 const cancelNote = document.querySelector('.cancel-note')
 const finishNote = document.querySelector('.finish-note');
-const noteTitleInput = document.getElementById('note-title-input');
+
+
 
 function addNewNote() {
     const notes = [];
@@ -52,6 +53,10 @@ function addNewNote() {
 }
 
 function cancelNoteFunc() {
+    repopulateNotes();
+}
+
+function repopulateNotes() {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     notesBody.innerHTML = '';
     notes.forEach((note, index) => {
@@ -78,14 +83,35 @@ function cancelNoteFunc() {
     `
     <div></div>
     <div>Notes</div>
-    <div id="add-new-note">+</div>
+    <div id="add-new-note" class="add-new-note">+</div>
     `;
+}
+
+function finishNoteFunc() {
+    const noteTitleInput = document.getElementById('note-title-input');
+    if (noteTitleInput.value == '') {
+        alert("Please fill out note title!");
+        return;
+    }
+    const notes = JSON.parse(localStorage.getItem('notes')) || [];
+    const noteTitle = document.getElementById('note-title-input').value;
+    const noteDate = correctDate;
+    const noteFirstLine = document.getElementById('note-contents').value;
+    notes.push({ noteTitle: noteTitle, noteDate: noteDate, firstLine: noteFirstLine});
+    localStorage.setItem('notes', JSON.stringify(notes));
+    repopulateNotes();
 }
 
 notesHeader.addEventListener('click', function(event) {
     if(event.target.closest('.cancel-note')) {
         cancelNoteFunc();
     }
+    if(event.target.closest('.add-new-note')) {
+        addNewNote();
+    }
+    if(event.target.closest('.finish-note')) {
+        finishNoteFunc();
+    }
 });
 
-addNewNoteButton.addEventListener('click', () => addNewNote());
+repopulateNotes();
