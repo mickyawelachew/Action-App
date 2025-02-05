@@ -8,7 +8,7 @@ calendar, weekly points, notes, and more...
 
 
 
-How to add it to your Homepage, so you can use it on your phone:
+How to add it to your Homepage so you can use it on your phone:
 
 step 1 - 
 
