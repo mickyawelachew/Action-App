@@ -101,6 +101,7 @@ function saveNote() {
     notes[currentNote] = ({noteTitle: noteTitle, noteDate: noteDate, firstLine: noteFirstLine, content: content});
     localStorage.setItem('notes', JSON.stringify(notes));
     repopulateNotes();
+    editing = false;
 }
 
 function openNote(event) {
@@ -130,6 +131,7 @@ function deleteNote() {
     notes.splice(currentNote, 1);
     localStorage.setItem('notes', JSON.stringify(notes));
     repopulateNotes();
+    editing = false;
 }
 notesHeader.addEventListener('click', function(event) {
     if(event.target.closest('.cancel-note')) {
