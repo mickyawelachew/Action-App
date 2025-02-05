@@ -4,18 +4,11 @@ const notesHeader = document.getElementById('notes-header');
 const cancelNote = document.querySelector('.cancel-note')
 const finishNote = document.querySelector('.finish-note');
 
+var editing = false;
+var currentNote = -1;
 
 
 function addNewNote() {
-    const notes = [];
-    document.querySelectorAll('.note').forEach(note => {
-        const noteTitle = note.querySelector('.note-title').innerText;
-        const noteDate = note.querySelector('.note-date').innerText;
-        const noteFirstLine = note.querySelector('.note-firstline').innerText;
-        notes.push({ noteTitle: noteTitle, noteDate: noteDate, firstLine: noteFirstLine});
-    });
-    localStorage.setItem('notes', JSON.stringify(notes));
-
     notesBody.innerHTML = 
     `
         <input type="text" placeholder="Title" id="note-title-input">
@@ -33,23 +26,12 @@ function addNewNote() {
         Done
     </div>
     `;
+}
 
-    /*notesBody.innerHTML += 
-    `
-    <div id="note1" class="note">
-        <div class="note-title">
-            Test Note
-        </div>
-        <div class="note-info-container">
-            <div class="note-date">
-                1-31-2025
-            </div>
-            <div class="note-firstline">
-                This a test of the note preview...
-            </div>
-        </div>
-    </div>
-    `;*/
+function getFirstLine(noteContent) {
+    const text = noteContent.value;
+    const lines = text.split('\n');
+    return lines[0];
 }
 
 function cancelNoteFunc() {
@@ -89,19 +71,66 @@ function repopulateNotes() {
 
 function finishNoteFunc() {
     const noteTitleInput = document.getElementById('note-title-input');
+    const noteContent = document.getElementById('note-contents');
     if (noteTitleInput.value == '') {
         alert("Please fill out note title!");
         return;
     }
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
-    const noteTitle = document.getElementById('note-title-input').value;
+    const noteTitle = noteTitleInput.value;
     const noteDate = correctDate;
-    const noteFirstLine = document.getElementById('note-contents').value;
-    notes.push({ noteTitle: noteTitle, noteDate: noteDate, firstLine: noteFirstLine});
+    const noteFirstLine = getFirstLine(noteContent);
+    const content = noteContent.value;
+    notes.push({ noteTitle: noteTitle, noteDate: noteDate, firstLine: noteFirstLine, content: content});
     localStorage.setItem('notes', JSON.stringify(notes));
     repopulateNotes();
 }
 
+function saveNote() {
+    const noteTitleInput = document.getElementById('note-title-input');
+    const noteContent = document.getElementById('note-contents');
+    if (noteTitleInput.value == '') {
+        alert("Please fill out note title!");
+        return;
+    }
+    const notes = JSON.parse(localStorage.getItem('notes')) || [];
+    const noteTitle = noteTitleInput.value;
+    const noteDate = correctDate;
+    const noteFirstLine = getFirstLine(noteContent);
+    const content = noteContent.value;
+    notes[currentNote] = ({noteTitle: noteTitle, noteDate: noteDate, firstLine: noteFirstLine, content: content});
+    localStorage.setItem('notes', JSON.stringify(notes));
+    repopulateNotes();
+}
+
+function openNote(event) {
+    editing = true;
+    const notes = JSON.parse(localStorage.getItem('notes')) || [];
+    const index = event.target.getAttribute('id').replace('note-', '');
+    currentNote = index;
+    addNewNote();
+    notesHeader.innerHTML = 
+    `
+    <div class="delete-note"> 
+        Delete
+    </div>
+    <div></div>
+    <div class="finish-note">
+        Done
+    </div>
+    `;
+    const noteTitleInput = document.getElementById('note-title-input');
+    const noteContent = document.getElementById('note-contents');
+    noteContent.value = notes[index].content;
+    noteTitleInput.value = notes[index].noteTitle;
+}
+
+function deleteNote() {
+    const notes = JSON.parse(localStorage.getItem('notes')) || [];
+    notes.splice(currentNote, 1);
+    localStorage.setItem('notes', JSON.stringify(notes));
+    repopulateNotes();
+}
 notesHeader.addEventListener('click', function(event) {
     if(event.target.closest('.cancel-note')) {
         cancelNoteFunc();
@@ -110,7 +139,20 @@ notesHeader.addEventListener('click', function(event) {
         addNewNote();
     }
     if(event.target.closest('.finish-note')) {
-        finishNoteFunc();
+        if(!editing) {
+            finishNoteFunc();
+        } else {
+            saveNote();
+        }
+    }
+    if(event.target.closest('.delete-note')) {
+        deleteNote();
+    }
+});
+
+notesBody.addEventListener('click', function(event) {
+    if(event.target.closest('.note')) {
+        openNote(event);
     }
 });
 
