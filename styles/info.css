@@ -153,6 +153,20 @@
     flex-direction: row;
     padding: 10px;
     height: 95%;
+    overflow-y: auto;
+}
+
+.cancel-note, .finish-note {
+    cursor: pointer;
+}
+
+#note-title-input {
+    width: 95%;
+}
+
+#note-contents {
+    width: 95%;
+    height: 90%;
 }
 
 .note {
@@ -188,6 +202,10 @@
     grid-template-columns: 0.33fr 0.33fr 0.33fr;
     align-items: center;
     margin-bottom: 10px;
+}
+
+#add-new-note {
+    cursor: pointer;
 }
 
 #add-new-note {
