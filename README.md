@@ -5,9 +5,7 @@ so they can defeat procrastination and embetter their lives.
 
 Action App helps it's users manage and achieve their tasks using features like a to-do list, 
 calendar, weekly points, notes app, and more...
-
-
-
+<br>
 
 How to add it to your Homepage so you can use it on your phone:
 
