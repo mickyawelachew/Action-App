@@ -261,7 +261,7 @@
     }
     .info-container {
         width: 650px;
-        height: 128vh;
+        height: 130vh;
     }
     .points-booking {
         display: none;
@@ -294,9 +294,5 @@
     }
     .points-phone {
         display: block;
-    }
-    .phone-booking-grid{
-        margin-left:8px;
-        margin-right:8px;
     }
 }
