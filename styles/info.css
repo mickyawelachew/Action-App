@@ -295,4 +295,7 @@
     .points-phone {
         display: block;
     }
+    .phone-booking-grid{
+        padding:2px;
+    }
 }
