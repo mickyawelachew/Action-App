@@ -54,10 +54,10 @@
 @media(max-width: 900px){
     .todo-container {
         width: 650px;
-        height: 95vh;
+        height: fit-content;
     }
     .todo-body {
-    max-height: 85vh;
+    max-height: 78vh;
     }
 }
 

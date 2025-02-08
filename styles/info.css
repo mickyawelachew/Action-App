@@ -239,4 +239,10 @@
         width: 650px;
         height: 195vh;
     }
+    .points-booking {
+        display: none;
+    }
+    .smaller-info-container {
+        grid-template-columns: 1fr;
+    }
 }
