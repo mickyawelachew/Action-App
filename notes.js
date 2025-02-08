@@ -72,10 +72,6 @@ function repopulateNotes() {
 function finishNoteFunc() {
     const noteTitleInput = document.getElementById('note-title-input');
     const noteContent = document.getElementById('note-contents');
-    if (noteTitleInput.value == '') {
-        alert("Please fill out note title!");
-        return;
-    }
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     const noteTitle = noteTitleInput.value;
     const noteDate = correctDate;
@@ -89,10 +85,6 @@ function finishNoteFunc() {
 function saveNote() {
     const noteTitleInput = document.getElementById('note-title-input');
     const noteContent = document.getElementById('note-contents');
-    if (noteTitleInput.value == '') {
-        alert("Please fill out note title!");
-        return;
-    }
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     const noteTitle = noteTitleInput.value;
     const noteDate = correctDate;

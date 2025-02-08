@@ -4,7 +4,7 @@
     height: 200vh;
 }
 
-.calendar, .new-task, .notes, .points, .booking {
+.calendar, .new-task, .notes, .points, .booking, .phone-booking {
     background: linear-gradient(135deg, hsl(0, 0%, 100%), #fffffe);
     border-radius: 10px;
     padding: 20px;
@@ -29,7 +29,7 @@
     max-width: 400px;
     min-width: 200px;
     z-index: 99;
-    position: absolute;
+    position: fixed;
     top: 50vh;
     max-height: 200px;
     min-height: 50px;
@@ -234,15 +234,47 @@
     flex: 1;
 }
 
+.phone-booking {
+    display: none;
+}
+
+.phone-booking-grid {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 @media(max-width: 900px){
     .info-container {
         width: 650px;
-        height: 195vh;
+        height: 130vh;
     }
     .points-booking {
         display: none;
     }
     .smaller-info-container {
         grid-template-columns: 1fr;
+    }
+    .new-task {
+        position: fixed;
+    }
+    .phone-booking {
+        padding-top: 10px;
+        display: block;
+        height: 100px;
+    }
+    .phone-booking-header {
+        margin-bottom: 15px;
+    }
+    .phone-booking img {
+        width: 50px;
+    }
+    .points-phone h2 {
+        display: inline-block;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+    .points-phone {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
     }
 }

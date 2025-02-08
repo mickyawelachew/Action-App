@@ -119,4 +119,10 @@
 .days div.active {
     margin: 3px;
 }
+
+@media(max-width: 900px) {
+    .calendar {
+        height: 100vw;
+    }
+}
   
