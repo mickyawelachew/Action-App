@@ -243,6 +243,14 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.points-phone {
+    display: none;
+}
+
+.booking img {
+    width: 50px;
+}
+
 @media(max-width: 900px){
     .info-container {
         width: 650px;
@@ -276,5 +284,8 @@
     .points-phone {
         margin-bottom: 0px;
         padding-bottom: 0px;
+    }
+    .points-phone {
+        display: block;
     }
 }
