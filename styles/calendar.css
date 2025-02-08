@@ -124,5 +124,8 @@
     .calendar {
         height: 100vw;
     }
+    .calendar-header{
+        font-size: 1.2em;
+    }
 }
   
