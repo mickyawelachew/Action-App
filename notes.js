@@ -31,7 +31,7 @@ function addNewNote() {
 function getFirstLine(noteContent) {
     const text = noteContent.value;
     const lines = text.split('\n');
-    return lines[0];
+    return `${lines[0].substring(0,30)}...`;
 }
 
 function cancelNoteFunc() {
