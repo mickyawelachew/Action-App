@@ -252,6 +252,9 @@
 }
 
 @media(max-width: 900px){
+    .notes{
+        margin-top:10px;
+    }
     .info-container {
         width: 650px;
         height: 130vh;
