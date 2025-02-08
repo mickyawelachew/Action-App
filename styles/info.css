@@ -234,6 +234,10 @@
     flex: 1;
 }
 
+.booking-header{
+    margin-bottom:1.2vh;
+}
+
 .phone-booking {
     display: none;
 }
