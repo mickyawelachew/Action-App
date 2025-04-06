@@ -76,32 +76,50 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (shortcutBtn) {
     shortcutBtn.addEventListener('click', () => {
-      window.location.href = 'https://www.icloud.com/shortcuts/16006642c5194a6ab9b08bb332f905cd';
+      showShortcutInstructions();
     });
   }
 
-function adjustInstallUIForPlatform() {
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const shortcutBtn = document.getElementById('shortcut-btn');
-  const shortcutInfo = document.querySelector('.shortcut-info');
-  
-  if (isIOS) {
- 
-    if (shortcutBtn) shortcutBtn.style.display = 'block';
-    if (shortcutInfo) shortcutInfo.style.display = 'flex';
-  } else {
-  
-    if (shortcutBtn) shortcutBtn.style.display = 'none';
-    if (shortcutInfo) shortcutInfo.style.display = 'none';
+  function showShortcutInstructions() {
+    const appInfo = {
+      name: 'Action App',
+      url: 'https://action-app.vercel.app/',
+      icon: 'https://action-app.vercel.app/images/Action-logo.png'
+    };
+   
+    installNotes.innerHTML = `
+      <div style="text-align: left; padding: 10px; background-color: #f5f5f5; color: #333; border-radius: 8px; margin-bottom: 10px;">
+        <strong>Shortcut Installation:</strong><br>
+        1. Copy this URL: <span style="color: #0066cc; font-weight: bold;">${appInfo.url}</span><br>
+        2. Tap the button below to open the Action App shortcut<br>
+        3. When prompted, paste the URL and continue<br>
+        4. The shortcut will create an icon named "${appInfo.name}" on your home screen
+      </div>
+    `;
+   
+    window.location.href = 'https://www.icloud.com/shortcuts/16006642c5194a6ab9b08bb332f905cd';
   }
-}
 
-document.addEventListener('DOMContentLoaded', adjustInstallUIForPlatform);
+  function adjustInstallUIForPlatform() {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const shortcutBtn = document.getElementById('shortcut-btn');
+    const shortcutInfo = document.querySelector('.shortcut-info');
+    
+    if (isIOS) {
+      if (shortcutBtn) shortcutBtn.style.display = 'block';
+      if (shortcutInfo) shortcutInfo.style.display = 'flex';
+    } else {
+      if (shortcutBtn) shortcutBtn.style.display = 'none';
+      if (shortcutInfo) shortcutInfo.style.display = 'none';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', adjustInstallUIForPlatform);
 
   const copyUrlBtn = document.getElementById('copy-url-btn');
   if (copyUrlBtn) {
     copyUrlBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(window.location.href)
+      navigator.clipboard.writeText('https://action-app.vercel.app/')
         .then(() => {
           copyUrlBtn.textContent = 'URL Copied!';
           setTimeout(() => {
