@@ -3,7 +3,7 @@
     "short_name": "Action",
     "start_url": "/index.html",
     "display": "standalone",
-    "background-color": "#f7f8fa",
+    "background-color": "#ffffff",
     "theme_color": "#151633",
     "icons": [
           {
