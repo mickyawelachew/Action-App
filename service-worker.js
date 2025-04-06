@@ -7,6 +7,7 @@ const STATIC_ASSETS = [
   "/styles/info.css",
   "/styles/login.css",
   "/styles/todo.css",
+  "/app.js",
   "/notes.js",
   "/todo.js",
   "/calendar.js",
