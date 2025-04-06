@@ -1,7 +1,7 @@
 {
     "name": "Action App",
     "short_name": "Action",
-    "start_url": "./index.html",
+    "start_url": "/index.html",
     "display": "standalone",
     "background-color": "#ffffff",
     "theme_color": "#000000",
