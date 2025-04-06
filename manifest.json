@@ -8,22 +8,23 @@
     "icons": [
           {
             "src": "images/Action-logo-webp.webp",
-            "sizes": "48x48",
+            "sizes": "48x48px",
             "type": "image/webp"
           },
           {
             "src": "images/Action-logo-lowres.png",
-            "sizes": "48x48"
+            "sizes": "48x48px"
           },
           {
             "src": "images/Action-logo-ico.ico",
-            "sizes": "72x72 96x96 128x128 192x192 256x256 512x512"
+            "sizes": "72x72px 96x96px 128x128px 192x192px 256x256px 512x512px"
           },
           {
             "src": "images/Action-logo.png",
             "sizes": "72x72 96x96 128x128  192x192 256x256 512x512"
           },
           {
+              "form_factor": "wide",
             "src": "images/Action-logo-svg.svg",
             "sizes": "any"
           }
