@@ -6,6 +6,23 @@ body {
     margin: 0;
 }
 
+
+.install{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .install{
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 header {
     z-index: 100;
     background: linear-gradient(135deg, #303678, #151633);
