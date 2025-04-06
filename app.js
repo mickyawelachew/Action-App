@@ -12,7 +12,8 @@ let deferredPrompt;
 const installBtn = document.getElementById('install-btn');
 
 window.addEventListener('beforeinstallprompt', (e) => {
-  console.log('beforeinstallprompt event fired');
+  console.log('beforeinstallprompt event fired'); // <-- Add this
+
   e.preventDefault();
   deferredPrompt = e;
 
@@ -20,16 +21,16 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
   installBtn.addEventListener('click', () => {
     installBtn.style.display = 'none';
+
     deferredPrompt.prompt();
 
-    deferredPrompt.userChoice
-      .then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt');
-        } else {
-          console.log('User dismissed the install prompt');
-        }
-        deferredPrompt = null;
-      });
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+      deferredPrompt = null;
+    });
   });
 });
