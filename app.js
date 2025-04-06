@@ -1,3 +1,4 @@
+let installContainer = document.querySelector('.install');
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
@@ -20,15 +21,12 @@ window.addEventListener('DOMContentLoaded', () => {
   if (installContainer) {
     installContainer.style.display = 'none';
   }
-
   window.addEventListener('beforeinstallprompt', (e) => {
     console.log("beforeinstallprompt event fired");
-
     e.preventDefault();
-
     deferredPrompt = e;
-
-    if (installContainer) {
+  
+    if (installContainer && shouldShowInstallPrompt()) {
       installContainer.style.display = 'flex';
       installNotes.textContent = 'Install Action App to your device';
       console.log("Install Button Shown");
@@ -36,9 +34,12 @@ window.addEventListener('DOMContentLoaded', () => {
       if (shortcutBtn) {
         shortcutBtn.style.display = 'none';
       }
-    } else {
-      console.log("Install Container Not Found");
     }
+  });
+
+  document.getElementById('done-button').addEventListener('click', () => {
+    localStorage.setItem('hideInstallPrompt', 'true');
+    installContainer.style.display = 'none';
   });
 
   if (installBtn) {
@@ -103,31 +104,29 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('app-icon').addEventListener('click', function() {
   });
   
+  function shouldShowInstallPrompt() {
+    return localStorage.getItem('hideInstallPrompt') !== 'true';
+  }
 
   function adjustInstallUIForPlatform() {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     const isWindows = navigator.platform.indexOf('Win') > -1;
-    const shortcutBtn = document.getElementById('shortcut-btn');
-    const shortcutInfo = document.querySelector('.shortcut-info');
-    const installContainer = document.querySelector('.install');
     
     if (installContainer) {
-      installContainer.style.position = 'fixed';
-      installContainer.style.bottom = '20px';
-      installContainer.style.left = '50%';
-      installContainer.style.transform = 'translateX(-50%)';
-      installContainer.style.zIndex = '1000';
-    }
-    
-    if (isIOS) {
-      if (shortcutBtn) shortcutBtn.style.display = 'block';
-      if (shortcutInfo) shortcutInfo.style.display = 'flex';
-      if (installContainer) installContainer.style.display = 'flex';
-    } else if (isWindows || 'standalone' in navigator || window.matchMedia('(display-mode: standalone)').matches) {
-      if (installContainer) installContainer.style.display = 'none';
+      if (!shouldShowInstallPrompt()) {
+        installContainer.style.display = 'none';
+        return;
+      }
+      
+      if (isIOS) {
+        if (shortcutBtn) shortcutBtn.style.display = 'block';
+        if (shortcutInfo) shortcutInfo.style.display = 'flex';
+        installContainer.style.display = 'flex';
+      } else if (isWindows || 'standalone' in navigator || window.matchMedia('(display-mode: standalone)').matches) {
+        installContainer.style.display = 'none';
+      }
     }
   }
-d
   adjustInstallUIForPlatform();
 
   const copyUrlBtn = document.getElementById('copy-url-btn');
