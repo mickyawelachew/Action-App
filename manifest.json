@@ -21,7 +21,7 @@
           },
           {
             "src": "images/Action-logo.png",
-            "sizes": "72x72 96x96 128x128  192x192 256x256 512x512"
+            "sizes": "72x72px 96x96px 128x128px 192x192px 256x256px 512x512px"
           },
           {
             "src": "images/Action-logo-svg.svg",
