@@ -16,15 +16,15 @@
             "sizes": "48x48"
           },
           {
-            "src": "icon/Action-logo-ico.ico",
+            "src": "images/Action-logo-ico.ico",
             "sizes": "72x72 96x96 128x128 192x192 256x256 512x512"
           },
           {
-            "src": "icon/Action-logo.png",
+            "src": "images/Action-logo.png",
             "sizes": "72x72 96x96 128x128  192x192 256x256 512x512"
           },
           {
-            "src": "icon/Action-logo-svg.svg",
+            "src": "images/Action-logo-svg.svg",
             "sizes": "any"
           }
         ]
