@@ -1,3 +1,20 @@
+console.log("App.js Loaded");
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  console.log("beforeinstallprompt event fired");
+  
+  e.preventDefault();
+  deferredPrompt = e;
+  
+  const installBtn = document.getElementById('install-btn');
+  
+  if (installBtn) {
+    installBtn.style.display = 'block';
+    console.log("Install Button Shown");
+  } else {
+    console.log("Install Button Not Found");
+  }
+});
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
