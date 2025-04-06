@@ -1,4 +1,3 @@
-// Register Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
@@ -12,40 +11,64 @@ console.log("App.js is working...");
 
 let deferredPrompt;
 
-// Wait for HTML to fully load
 window.addEventListener('DOMContentLoaded', () => {
-
   const installBtn = document.getElementById('install-btn');
+  const installContainer = document.querySelector('.install');
+  const installNotes = document.querySelector('.install-notes');
+  
+  if (installContainer) {
+    installContainer.style.display = 'none';
+  }
 
   window.addEventListener('beforeinstallprompt', (e) => {
     console.log("beforeinstallprompt event fired");
 
-    // Stop the browser from auto-showing the banner
     e.preventDefault();
 
-    // Save the event for later
     deferredPrompt = e;
 
-    if (installBtn) {
-      installBtn.style.display = 'block';
+    if (installContainer) {
+      installContainer.style.display = 'flex';
+      installNotes.textContent = 'Install Action App to your device';
       console.log("Install Button Shown");
     } else {
-      console.log("Install Button Not Found");
+      console.log("Install Container Not Found");
     }
+  });
 
+  if (installBtn) {
     installBtn.addEventListener('click', () => {
-      installBtn.style.display = 'none';
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
 
-      deferredPrompt.prompt();
-
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt');
-        } else {
-          console.log('User dismissed the install prompt');
-        }
-        deferredPrompt = null;
-      });
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
+       
+        installContainer.style.display = 'none';
+      } else {
+        installNotes.innerHTML = 'To install: tap <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48cGF0aCBkPSJNMTUgOGE1IDUgMCAwIDEtNSA1SDV2MkgyYTIgMiAwIDAgMS0yLTJWMmEyIDIgMCAwIDEgMi0yaDhhNSA1IDAgMCAxIDUgNXYxem0tOCAwVjNINnY1aDFtMyAwaDBWM2gtMXY1aDFtMyAwaDBWM2gtMXY1aDEiIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==" style="width: 16px; vertical-align: middle;"> then "Add to Home Screen"';
+      }
     });
+  }
+
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  
+  if (isIOS && installContainer) {
+    installContainer.style.display = 'flex';
+    installBtn.textContent = 'Install App';
+    installNotes.textContent = 'Tap "Install App" for instructions';
+  }
+
+  window.addEventListener('appinstalled', () => {
+    console.log('App was installed');
+    if (installContainer) {
+      installContainer.style.display = 'none';
+    }
   });
 });
