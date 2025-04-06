@@ -4,7 +4,7 @@
     "start_url": "./index.html",
     "display": "standalone",
     "background-color": "#ffffff",
-    "theme_color": "#151633",
+    "theme_color": "#000000",
     "icons": [
           {
             "src": "images/Action-logo-webp.webp",
@@ -24,9 +24,33 @@
             "sizes": "72x72 96x96 128x128  192x192 256x256 512x512"
           },
           {
-              "form_factor": "wide",
             "src": "images/Action-logo-svg.svg",
             "sizes": "any"
-          }
+          },
         ]
+    /* Single screenshot */
+"screenshots": [
+  {
+    "src": "desktop.webp",
+    "sizes": "1280x720",
+    "type": "image/webp"
+  }
+]
+
+"screenshots": [
+  {
+    "src": "images/home.webp",
+    "sizes": "1280x720",
+    "type": "image/webp",
+    "form_factor": "wide",
+    "label": "Home screen showing main navigation and featured content"
+  },
+  {
+    "src": "images/dashboard.webp",
+    "sizes": "1280x720",
+    "type": "image/webp",
+    "platform": "ios",
+    "label": "Dashboard view displaying key metrics"
+  }
+]
 }
