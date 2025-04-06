@@ -86,35 +86,43 @@ window.addEventListener('DOMContentLoaded', () => {
       url: 'https://action-app.vercel.app/',
       icon: 'https://action-app.vercel.app/images/Action-logo.png'
     };
-   
+  
     installNotes.innerHTML = `
       <div style="text-align: left; padding: 10px; background-color: #f5f5f5; color: #333; border-radius: 8px; margin-bottom: 10px;">
         <strong>Shortcut Installation:</strong><br>
-        1. Copy this URL: <span style="color: #0066cc; font-weight: bold;">${appInfo.url}</span><br>
-        2. Tap the button below to open the Action App shortcut<br>
-        3. When prompted, paste the URL and continue<br>
-        4. The shortcut will create an icon named "${appInfo.name}" on your home screen
+        Tap the button below to install the Action App to your home screen automatically. No need to copy/paste!
       </div>
     `;
-   
-    window.location.href = 'https://www.icloud.com/shortcuts/16006642c5194a6ab9b08bb332f905cd';
+  
+    window.location.href = 'shortcuts://run-shortcut?name=Add%20to%20Home%20Screen&input=' + encodeURIComponent(JSON.stringify(appInfo));
   }
+  
 
   function adjustInstallUIForPlatform() {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isWindows = navigator.platform.indexOf('Win') > -1;
     const shortcutBtn = document.getElementById('shortcut-btn');
     const shortcutInfo = document.querySelector('.shortcut-info');
+    const installContainer = document.querySelector('.install');
+    
+    if (installContainer) {
+      installContainer.style.position = 'fixed';
+      installContainer.style.bottom = '20px';
+      installContainer.style.left = '50%';
+      installContainer.style.transform = 'translateX(-50%)';
+      installContainer.style.zIndex = '1000';
+    }
     
     if (isIOS) {
       if (shortcutBtn) shortcutBtn.style.display = 'block';
       if (shortcutInfo) shortcutInfo.style.display = 'flex';
-    } else {
-      if (shortcutBtn) shortcutBtn.style.display = 'none';
-      if (shortcutInfo) shortcutInfo.style.display = 'none';
+      if (installContainer) installContainer.style.display = 'flex';
+    } else if (isWindows || 'standalone' in navigator || window.matchMedia('(display-mode: standalone)').matches) {
+      if (installContainer) installContainer.style.display = 'none';
     }
   }
-
-  document.addEventListener('DOMContentLoaded', adjustInstallUIForPlatform);
+d
+  adjustInstallUIForPlatform();
 
   const copyUrlBtn = document.getElementById('copy-url-btn');
   if (copyUrlBtn) {
@@ -138,4 +146,24 @@ window.addEventListener('DOMContentLoaded', () => {
       installContainer.style.display = 'none';
     }
   });
+  
+  const closeInstallBtn = document.createElement('button');
+  closeInstallBtn.innerHTML = '✕';
+  closeInstallBtn.style.position = 'absolute';
+  closeInstallBtn.style.top = '5px';
+  closeInstallBtn.style.right = '5px';
+  closeInstallBtn.style.background = 'none';
+  closeInstallBtn.style.border = 'none';
+  closeInstallBtn.style.fontSize = '16px';
+  closeInstallBtn.style.cursor = 'pointer';
+  closeInstallBtn.style.color = '#666';
+  
+  if (installContainer) {
+    installContainer.style.position = 'relative';
+    installContainer.appendChild(closeInstallBtn);
+    
+    closeInstallBtn.addEventListener('click', () => {
+      installContainer.style.display = 'none';
+    });
+  }
 });

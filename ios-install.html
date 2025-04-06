@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action App - iOS Shortcut</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #151633;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #151633;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .info {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .app-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="images/Action-logo.png" alt="Action App Logo" class="app-icon">
+        <h1>Install Action App</h1>
+        
+        <p>Click the button below to add Action App to your home screen.</p>
+        
+        <a href="shortcuts://import-shortcut?url=https://www.icloud.com/shortcuts/16006642c5194a6ab9b08bb332f905cd" class="button">Install with Shortcuts</a>
+        
+        <div class="info">
+            <p><strong>What happens next:</strong></p>
+            <p>1. The Shortcuts app will open</p>
+            <p>2. Tap "Add Shortcut"</p>
+            <p>3. The app will be added to your home screen automatically</p>
+        </div>
+        
+        <p><small>This shortcut will create an icon named "Action App" on your home screen that will open the app in full-screen mode, just like a native app.</small></p>
+    </div>
+    
+    <script>
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        
+        if (!isIOS) {
+            document.querySelector('.container').innerHTML = `
+                <h1>iOS Installation</h1>
+                <p>This installation method is only available on iOS devices.</p>
+                <p>Please visit the app on an iPhone or iPad to use this installation method.</p>
+                <a href="/" class="button">Return to App</a>
+            `;
+        }
+    </script>
+</body>
+</html>
