@@ -1,7 +1,3 @@
-import { registerServiceWorker } from './sw-register.js';
-registerServiceWorker();
-console.log("todo.js is running...");
-
 const newTask = document.getElementById('new-task-form');
 const newTaskButton = document.getElementById('new-task-button');
 const todoBody = document.getElementById('todo-body');
