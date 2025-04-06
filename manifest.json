@@ -1,31 +1,50 @@
 {
-    "name": "Action App",
-    "short_name": "Action",
-    "start_url": "/index.html",
-    "display": "standalone",
-    "background_color": "#f7f8fa",
-    "theme_color": "#151633",
-    "icons": [
-          {
-            "src": "images/Action-logo-webp.webp",
-            "sizes": "48x48",
-            "type": "image/webp"
-          },
-          {
-            "src": "images/Action-logo-lowres.png",
-            "sizes": "48x48"
-          },
-          {
-            "src": "icon/Action-logo-ico.ico",
-            "sizes": "72x72 96x96 128x128 256x256"
-          },
-          {
-            "src": "icon/Action-logo.png",
-            "sizes": "72x72 96x96 128x128 256x256"
-          },
-          {
-            "src": "icon/Action-logo-svg.svg",
-            "sizes": "any"
-          }
-        ]
+  "name": "Action App",
+  "short_name": "Action",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#151633",
+  "icons": [
+    {
+      "src": "images/Action-logo-webp.webp",
+      "sizes": "48x48",
+      "type": "image/webp"
+    },
+    {
+      "src": "images/Action-logo-lowres.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "images/Action-logo-ico.ico",
+      "sizes": "72x72 96x96 128x128 192x192 256x256 512x512"
+    },
+    {
+      "src": "images/Action-logo.png",
+      "sizes": "72x72 96x96 128x128 192x192 256x256 512x512"
+    },
+    {
+      "src": "images/Action-logo-svg.svg",
+      "sizes": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot3.webp",
+      "sizes": "1280x720",
+      "type": "image/webp"
+    },
+    {
+      "src": "/images/screenshot2.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "label": "Home screen showing main navigation and featured content"
+    },
+    {
+      "src": "/images/screenshot1.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "label": "Dashboard view displaying key metrics"
+    }
+  ]
 }
