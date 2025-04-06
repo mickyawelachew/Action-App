@@ -16,8 +16,7 @@ const STATIC_ASSETS = [
   "/images/Action-logo-lowres.png",
   "/images/Action-logo-webp.webp",
   "/images/Action-logo-svg.svg",
-]
-;
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
