@@ -31,7 +31,7 @@
    
 "screenshots": [
   {
-    "src": "desktop.webp",
+      "src": "/images/screenshot3.webp",
     "sizes": "1280x720",
     "type": "image/webp"
   }
@@ -39,14 +39,14 @@
 
 "screenshots": [
   {
-    "src": "images/home.webp",
+      "src": "/images/screenshot2.webp",
     "sizes": "1280x720",
     "type": "image/webp",
     "form_factor": "wide",
     "label": "Home screen showing main navigation and featured content"
   },
   {
-    "src": "images/dashboard.webp",
+      "src": "/images/screenshot1.webp",
     "sizes": "1280x720",
     "type": "image/webp",
     "platform": "ios",
