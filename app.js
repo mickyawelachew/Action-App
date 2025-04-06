@@ -1,20 +1,4 @@
-console.log("App.js Loaded");
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  console.log("beforeinstallprompt event fired");
-  
-  e.preventDefault();
-  deferredPrompt = e;
-  
-  const installBtn = document.getElementById('install-btn');
-  
-  if (installBtn) {
-    installBtn.style.display = 'block';
-    console.log("Install Button Shown");
-  } else {
-    console.log("Install Button Not Found");
-  }
-});
+// Register Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
@@ -23,31 +7,45 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.log('Service Worker Registration Failed', err));
   });
 }
+
 console.log("App.js is working...");
 
 let deferredPrompt;
-const installBtn = document.getElementById('install-btn');
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  console.log('beforeinstallprompt event fired'); // <-- Add this
+// Wait for HTML to fully load
+window.addEventListener('DOMContentLoaded', () => {
 
-  e.preventDefault();
-  deferredPrompt = e;
+  const installBtn = document.getElementById('install-btn');
 
-  installBtn.style.display = 'block';
+  window.addEventListener('beforeinstallprompt', (e) => {
+    console.log("beforeinstallprompt event fired");
 
-  installBtn.addEventListener('click', () => {
-    installBtn.style.display = 'none';
+    // Stop the browser from auto-showing the banner
+    e.preventDefault();
 
-    deferredPrompt.prompt();
+    // Save the event for later
+    deferredPrompt = e;
 
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      } else {
-        console.log('User dismissed the install prompt');
-      }
-      deferredPrompt = null;
+    if (installBtn) {
+      installBtn.style.display = 'block';
+      console.log("Install Button Shown");
+    } else {
+      console.log("Install Button Not Found");
+    }
+
+    installBtn.addEventListener('click', () => {
+      installBtn.style.display = 'none';
+
+      deferredPrompt.prompt();
+
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+        deferredPrompt = null;
+      });
     });
   });
 });
