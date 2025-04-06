@@ -65,6 +65,53 @@ body {
   margin-bottom: 5px;
   cursor: pointer;
 }
+.shortcut-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  position: relative;
+}
+
+.app-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.app-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 2px;
+  background: white;
+}
+
+.save-hint {
+  font-size: 0.7rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.copy-button {
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.install-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
 
 header {
     z-index: 100;

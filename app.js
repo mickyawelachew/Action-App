@@ -89,13 +89,19 @@ window.addEventListener('DOMContentLoaded', () => {
   
     installNotes.innerHTML = `
       <div style="text-align: left; padding: 10px; background-color: #f5f5f5; color: #333; border-radius: 8px; margin-bottom: 10px;">
-        <strong>Shortcut Installation:</strong><br>
-        Tap the button below to install the Action App to your home screen automatically. No need to copy/paste!
+        <strong>1.</strong> Tap the Action App icon below and "Save Image"<br>
+        <strong>2.</strong> Tap "Use Shortcuts" again to install
       </div>
     `;
   
-    window.location.href = 'shortcuts://run-shortcut?name=Add%20to%20Home%20Screen&input=' + encodeURIComponent(JSON.stringify(appInfo));
+    shortcutBtn.textContent = "Use Shortcuts";
+    shortcutBtn.onclick = function() {
+      window.location.href = `shortcuts://create-shortcut?name=${encodeURIComponent(appInfo.name)}&url=${encodeURIComponent(appInfo.url)}&icon=${encodeURIComponent(appInfo.icon)}`;
+    };
   }
+  
+  document.getElementById('app-icon').addEventListener('click', function() {
+  });
   
 
   function adjustInstallUIForPlatform() {
