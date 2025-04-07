@@ -127,22 +127,25 @@ function showShortcutInstructions() {
     }
   }
   adjustInstallUIForPlatform();
+  
+const copyUrlBtn = document.getElementById('copy-url-btn');
+const siteUrl = 'https://action-app.vercel.app'; // Your app URL
 
-  const copyUrlBtn = document.getElementById('copy-url-btn');
-  if (copyUrlBtn) {
-    copyUrlBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText('https://action-app.vercel.app/')
-        .then(() => {
-          copyUrlBtn.textContent = 'URL Copied!';
-          setTimeout(() => {
-            copyUrlBtn.textContent = 'Copy URL';
-          }, 2000);
-        })
-        .catch(err => {
-          console.error('Failed to copy URL: ', err);
-        });
-    });
-  }
+if (copyUrlBtn) {
+  copyUrlBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(siteUrl)
+      .then(() => {
+        console.log('URL copied to clipboard');
+        copyUrlBtn.textContent = 'Copied!';
+        setTimeout(() => {
+          copyUrlBtn.textContent = 'Copy URL';
+        }, 2000);
+      })
+      .catch(err => {
+        console.error('Failed to copy URL: ', err);
+      });
+  });
+}
 
   window.addEventListener('appinstalled', () => {
     console.log('App was installed');
