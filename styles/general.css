@@ -58,14 +58,19 @@ body {
   margin-top: 5px;
 }
 
-.copy-button {
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  margin-bottom: 5px;
+#copy-url-btn {
+  padding: 10px 20px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
+
+#copy-url-btn:hover {
+  background-color: #005bb5;
+}
+
 .shortcut-info {
   display: flex;
   flex-direction: column;
@@ -98,14 +103,6 @@ body {
   margin-top: 4px;
 }
 
-.copy-button {
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  margin-bottom: 5px;
-  cursor: pointer;
-}
 
 .install-buttons {
   display: flex;
