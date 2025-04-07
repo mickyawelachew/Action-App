@@ -80,26 +80,26 @@ window.addEventListener('DOMContentLoaded', () => {
       showShortcutInstructions();
     });
   }
+function showShortcutInstructions() {
+  const appInfo = {
+    name: 'Action App',
+    url: 'https://action-app.vercel.app/',
+    icon: 'https://action-app.vercel.app/images/Action-logo.png'
+  };
 
-  function showShortcutInstructions() {
-    const appInfo = {
-      name: 'Action App',
-      url: 'https://action-app.vercel.app/',
-      icon: 'https://action-app.vercel.app/images/Action-logo.png'
-    };
-  
-    installNotes.innerHTML = `
-      <div style="text-align: left; padding: 10px; background-color: #f5f5f5; color: #333; border-radius: 8px; margin-bottom: 10px;">
-        <strong>1.</strong> Tap the Action App icon below and "Save Image"<br>
-        <strong>2.</strong> Tap "Use Shortcuts" again to install
-      </div>
-    `;
-  
-    shortcutBtn.textContent = "Use Shortcuts";
-    shortcutBtn.onclick = function() {
-      window.location.href = `shortcuts://create-shortcut?name=${encodeURIComponent(appInfo.name)}&url=${encodeURIComponent(appInfo.url)}&icon=${encodeURIComponent(appInfo.icon)}`;
-    };
-  }
+  installNotes.innerHTML = `
+    <div style="text-align: left; padding: 10px; background-color: #f5f5f5; color: #333; border-radius: 8px; margin-bottom: 10px;">
+      <strong>1.</strong> Tap the Action App icon below and "Save Image"<br>
+      <strong>2.</strong> Tap "Use Shortcuts" again to install
+    </div>
+  `;
+
+  shortcutBtn.textContent = "Use Shortcuts";
+  shortcutBtn.onclick = function() {
+    // Use the pre-made shortcut instead of creating a new one
+    window.location.href = "https://www.icloud.com/shortcuts/c523acba9e1041bb94d969e296a01eed";
+  };
+}
   
   document.getElementById('app-icon').addEventListener('click', function() {
   });
