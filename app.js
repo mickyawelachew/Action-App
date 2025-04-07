@@ -96,7 +96,7 @@ function showShortcutInstructions() {
 
   shortcutBtn.textContent = "Use Shortcuts";
   shortcutBtn.onclick = function() {
-    window.location.href = "https://www.icloud.com/shortcuts/c523acba9e1041bb94d969e296a01eed";
+    window.location.href = "https://www.icloud.com/shortcuts/54b26547792d43d0825f5fda6d7b32ac";
   };
 }
   
